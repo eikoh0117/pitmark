@@ -36,6 +36,7 @@
 </template>
 
 <script>
+import firebase from "firebase";
 export default {
   name: "sign_up",
   data() {
@@ -46,9 +47,15 @@ export default {
   },
   methods: {
     signUp() {
-      alert(`Email: ${this.email}, Password: ${this.password}`);
-      this.email = null;
-      this.password = null;
+      firebase
+        .auth()
+        .createUserWithEmailAndPassword(this.email, this.password)
+        .then(() => {
+          this.$router.push({ name: "home" });
+        })
+        .catch(error => {
+          alert(error.message);
+        });
     }
   }
 };
