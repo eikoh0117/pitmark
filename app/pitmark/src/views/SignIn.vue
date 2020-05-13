@@ -3,18 +3,8 @@
     <pm-page-title title="サインイン"></pm-page-title>
     <section class="section">
       <form class="container">
-        <div class="field">
-          <p class="control has-icons-left">
-            <input class="input" type="email" placeholder="メールアドレス" v-model="email" />
-            <pm-icon class="is-small is-left" name="envelop"></pm-icon>
-          </p>
-        </div>
-        <div class="field">
-          <p class="control has-icons-left">
-            <input class="input" type="password" placeholder="パスワード" v-model="password" />
-            <pm-icon class="is-small is-left" name="lock"></pm-icon>
-          </p>
-        </div>
+        <pm-text-field type="email" placeholder="メールアドレス" icon="envelope" v-model="email"></pm-text-field>
+        <pm-text-field type="password" placeholder="パスワード" icon="lock" v-model="password"></pm-text-field>
         <div class="field is-grouped">
           <div class="control">
             <button @click.prevent="signIn" class="button is-primary">サインイン</button>
@@ -29,10 +19,10 @@
 // import firebase from "firebase";
 import { authService } from "@/services/AuthService";
 import pmPageTitle from "@/components/PageTitle";
-import pmIcon from "@/components/Icon";
+import pmTextField from "@/components/TextField";
 
 export default {
-  components: { pmPageTitle, pmIcon },
+  components: { pmPageTitle, pmTextField },
   name: "sign_in",
   data() {
     return {
