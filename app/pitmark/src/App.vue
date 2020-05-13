@@ -62,7 +62,7 @@
   </div>
 </template>
 <script>
-import firebase from "firebase";
+import { authService } from "@/services/AuthService";
 
 export default {
   name: "app",
@@ -72,13 +72,13 @@ export default {
     };
   },
   created() {
-    firebase.auth().onAuthStateChanged(user => {
+    authService.onStateChanged(user => {
       this.user = user;
     });
   },
   methods: {
     async signOut() {
-      await firebase.auth().signOut();
+      await authService.signOut();
       // サインアウト後にトップページに遷移する
       this.$router.push({ name: "home" });
     }

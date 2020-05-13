@@ -36,7 +36,8 @@
 </template>
 
 <script>
-import firebase from "firebase";
+// import firebase from "firebase";
+import { authService } from "@/services/AuthService";
 export default {
   name: "sign_up",
   data() {
@@ -47,9 +48,8 @@ export default {
   },
   methods: {
     signUp() {
-      firebase
-        .auth()
-        .createUserWithEmailAndPassword(this.email, this.password)
+      authService
+        .signIn(this.email, this.password)
         .then(() => {
           this.$router.push({ name: "home" });
         })

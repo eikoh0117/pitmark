@@ -36,7 +36,9 @@
 </template>
 
 <script>
-import firebase from "firebase";
+// import firebase from "firebase";
+import { authService } from "@/services/AuthService";
+
 export default {
   name: "sign_in",
   data() {
@@ -48,9 +50,8 @@ export default {
   methods: {
     // サインイン処理を追加
     signIn() {
-      firebase
-        .auth()
-        .signInWithEmailAndPassword(this.email, this.password)
+      authService
+        .signIn(this.email, this.password)
         .then(() => {
           // サインイン成功後にトップページに遷移する
           this.$router.push({ name: "home" });
